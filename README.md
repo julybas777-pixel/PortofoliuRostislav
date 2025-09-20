@@ -1,0 +1,314 @@
+[index.html](https://github.com/user-attachments/files/22443632/index.html)
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Portofoliul lui Rostislav</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #7f00ff, #e100ff, #00c9ff, #92fe9d, #ff6a00);
+      background-size: 500% 500%;
+      animation: gradientBG 15s ease infinite;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      cursor: pointer;
+      z-index: 2000;
+    }
+    .hamburger div {
+      width: 35px;
+      height: 4px;
+      background: white;
+      margin: 6px 0;
+      border-radius: 3px;
+      transition: 0.4s;
+    }
+
+    /* Side Menu */
+    .side-menu {
+      position: fixed;
+      left: -270px;
+      top: 0;
+      width: 270px;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      padding-top: 70px;
+      transition: 0.5s;
+      z-index: 1500;
+      backdrop-filter: blur(8px);
+    }
+    .side-menu a {
+      display: block;
+      padding: 18px 30px;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      border-left: 4px solid transparent;
+      transition: 0.3s;
+    }
+    .side-menu a:hover {
+      background: #ff6f61;
+      border-left: 4px solid white;
+    }
+    .side-menu.active { left: 0; }
+
+    /* Secțiuni */
+    section {
+      padding: 70px 30px;
+      max-width: 1100px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    section h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    /* Competențe */
+    ul.skills {
+      list-style: none;
+      font-size: 18px;
+    }
+    ul.skills li {
+      margin: 8px 0;
+    }
+    ul.skills li::before {
+      content: "🚀 ";
+    }
+
+    /* Proiecte */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .project-card h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    /* Contact */
+    .contact-info {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+    .contact-info a {
+      color: #0077b6;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .contact-info a:hover { color: #ff6f61; }
+
+    .btn {
+      display: inline-block;
+      background: #0077b6;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      margin-top: 15px;
+    }
+    .btn:hover {
+      background: #023e8a;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+    }
+
+    /* Back to top */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff6f61;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    #backToTop:hover {
+      background: #e84118;
+      transform: scale(1.1);
+    }
+
+    /* Animations */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+
+  <!-- Side Menu -->
+  <div class="side-menu" id="sideMenu">
+    <a href="#acasa">🏠 Acasă</a>
+    <a href="#despre">ℹ️ Despre mine</a>
+    <a href="#skills">🛠️ Competențe</a>
+    <a href="#proiecte">📂 Proiecte</a>
+    <a href="#contact">📞 Contact</a>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <h1>🌟 Portofoliul lui Rostislav</h1>
+    <p>Design grafic | Programare | Creativitate</p>
+  </header>
+
+  <!-- ACASA -->
+  <section id="acasa">
+    <h2>🏠 Acasă</h2>
+    <p>Bine ai venit pe site-ul meu personal! Descoperă cine sunt, ce pot să fac și cum putem colabora.</p>
+  </section>
+
+  <!-- DESPRE -->
+  <section id="despre">
+    <h2>ℹ️ Despre mine</h2>
+    <p>Sunt <b>Rostislav Popescu</b>, pasionat de tehnologie, design și programare. Creez proiecte interactive și iubesc să învăț lucruri noi.</p>
+  </section>
+
+  <!-- COMPETENTE -->
+  <section id="skills">
+    <h2>🛠️ Competențe</h2>
+    <ul class="skills">
+      <li>Figma (design interfețe)</li>
+      <li>Adobe Photoshop & Illustrator</li>
+      <li>Programare în Java, C++, C, HTML</li>
+      <li>Prezentări și proiecte școlare complexe</li>
+    </ul>
+  </section>
+
+  <!-- PROIECTE -->
+  <section id="proiecte">
+    <h2>📂 Proiecte</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>🎨 Design Figma</h3>
+        <p>Am realizat mockup-uri și interfețe moderne pentru aplicații și site-uri.</p>
+      </div>
+      <div class="project-card">
+        <h3>💻 Proiecte în C++</h3>
+        <p>Aplicații pentru școală, gestionare date și rezolvare probleme complexe.</p>
+      </div>
+      <div class="project-card">
+        <h3>🖼️ Photoshop & Illustrator</h3>
+        <p>Crearea de bannere, postere și logo-uri personalizate.</p>
+      </div>
+      <div class="project-card">
+        <h3>🌐 HTML & Web</h3>
+        <p>Site-uri responsive și interactive cu HTML, CSS și JavaScript.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>📞 Contact</h2>
+    <div class="contact-info">
+      <p><b>Email:</b> <a href="mailto:rostislavpopescu829@gmail.com">rostislavpopescu829@gmail.com</a></p>
+      <p><b>Telefon:</b> <a href="tel:+37368588936">+373 68 588 936</a></p>
+      <p><b>Instagram:</b> <a href="https://instagram.com/qrust1k" target="_blank">@qrust1k</a></p>
+    </div>
+    <a class="btn" href="mailto:rostislavpopescu829@gmail.com">📧 Trimite Email</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Rostislav Popescu | Toate drepturile rezervate</p>
+  </footer>
+
+  <!-- Buton back to top -->
+  <button id="backToTop" onclick="scrollToTop()">⬆️</button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sideMenu").classList.toggle("active");
+    }
+
+    // Buton Back to Top
+    window.onscroll = function() {
+      const btn = document.getElementById("backToTop");
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  </script>
+</body>
+</html>
